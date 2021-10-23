@@ -9,9 +9,13 @@ test('tests creating an Employee',() =>{
     expect(employee.email).toEqual(expect.any(String));
     expect(employee.role).toEqual('Employee');
 
-    // expect(employee.getName()).toEqual(expect.any(String));
-    // expect(employee.getEmail()).toEqual(expect.any(String));
-    // expect(employee.getId()).toEqual(expect.any(Number));
-    // expect(employee.getRole()).toEqual(expect('Employee'));
+    expect(employee.getName()).toEqual(expect.any(String));
+    console.log(employee.getName())
+    expect(employee.getEmail()).toEqual(expect.any(String));
+    console.log(employee.getEmail())
+    expect(employee.getId()).toEqual(expect.any(String));
+    console.log(employee.getId())
+    expect(employee.getRole()).toEqual(expect.any(String));
+    console.log(employee.getRole())
     console.table(employee)
 })
