@@ -10,16 +10,16 @@ test('tests creating an Intern',() =>{
     expect(intern.role).toEqual('Intern');
     expect(intern.school).toEqual(expect.any(String));
     
-    console.table(intern)
+    console.table(intern);
 
     expect(intern.getName()).toEqual(expect.any(String));
-    console.log(intern.getName())
+    console.log(intern.getName());
     expect(intern.getEmail()).toEqual(expect.any(String));
-    console.log(intern.getEmail())
+    console.log(intern.getEmail());
     expect(intern.getId()).toEqual(expect.any(String));
-    console.log(intern.getId())
+    console.log(intern.getId());
     expect(intern.getRole()).toEqual(expect.any(String));
-    console.log(intern.getRole())
+    console.log(intern.getRole());
     expect(intern.getSchool()).toEqual(expect.any(String));
-    console.log(intern.getSchool())
-})
+    console.log(intern.getSchool());
+});
