@@ -36,7 +36,7 @@ const promptManager = employeeData => {
             teamData.push(employeeData);
             console.log(teamData)
         })
-        .then(employeeData => {
+        .then(managerData => {
             if (employeeData.confirmAddEmployee) {
                 return promptStart(teamData);
             } else {
@@ -70,8 +70,13 @@ const promptEngineer = employeeData => {
             console.log(employeeData)
             console.log(engineerData)
             employeeData['Github'] = engineerData.Github
-            employeeData['confirmAddEmployee'] = managerData.confirmAddEmployee
+            employeeData['confirmAddEmployee'] = engineerData.confirmAddEmployee
             console.log(employeeData)
+            console.log(teamData)
+            teamData.push(employeeData);
+            console.log(teamData)
+        })
+        .then(engineerData => {
             if (employeeData.confirmAddEmployee) {
                 return promptStart(teamData);
             } else {
@@ -105,10 +110,13 @@ const promptIntern = employeeData => {
             console.log(employeeData)
             console.log(internData)
             employeeData['school'] = internData.school
-            employeeData['confirmAddEmployee'] = managerData.confirmAddEmployee
+            employeeData['confirmAddEmployee'] = internData.confirmAddEmployee
             console.log(employeeData)
+            console.log(teamData)
+            teamData.push(employeeData);
+            console.log(teamData)
         })
-        .then(employeeData => {
+        .then(internData => {
             if (employeeData.confirmAddEmployee) {
                 return promptStart(teamData);
             } else {
