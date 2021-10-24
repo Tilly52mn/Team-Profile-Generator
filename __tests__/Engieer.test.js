@@ -1,5 +1,5 @@
 const exp = require("constants")
-const Manager = require('../lib/Engineer');
+const Engineer = require('../lib/Engineer');
 
 test('tests creating an Manager',() =>{
     const engineer = new Engineer('Ed', '0015681' ,'email@gmail','B52');
@@ -8,6 +8,7 @@ test('tests creating an Manager',() =>{
     expect(engineer.id).toEqual(expect.any(String));
     expect(engineer.email).toEqual(expect.any(String));
     expect(engineer.role).toEqual('Engineer');
+    expect(engineer.Github).toEqual(expect.any(String));
     
     console.table(engineer)
 
