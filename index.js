@@ -127,9 +127,6 @@ const promptIntern = employeeData => {
 
 const promptStart = () => {
 
-    // if (!teamData) {
-    //     teamData = [];
-    // }
     return inquirer.prompt([
         {
             type: 'input',

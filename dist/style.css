@@ -1,0 +1,13 @@
+.blue-background{
+    background-color: blue;
+    color: white;
+}
+.external-card{
+    margin: 10px;
+    padding: 0%;
+}
+.jumbotron{
+    background-color: red;
+    color: white;
+    text-align: center;
+}
