@@ -2,22 +2,24 @@ const exp = require("constants")
 const Manager = require('../lib/Manager');
 
 test('tests creating an Manager',() =>{
-    const Manager = new Manager('Ed', '0015681' ,'email@gmail','B52');
+    const manager = new Manager('Ed', '0015681' ,'email@gmail','B52');
 
-    expect(Manager.name).toEqual(expect.any(String));
-    expect(Manager.id).toEqual(expect.any(String));
-    expect(Manager.email).toEqual(expect.any(String));
-    expect(Manager.role).toEqual('Manager');
-    expect(Manager.officeNumber).toEqual(expect.any(String));
+    expect(manager.name).toEqual(expect.any(String));
+    expect(manager.id).toEqual(expect.any(String));
+    expect(manager.email).toEqual(expect.any(String));
+    expect(manager.role).toEqual('Manager');
+    expect(manager.officeNumber).toEqual(expect.any(String));
     
-    console.table(Manager)
+    console.table(manager)
 
-    expect(Manager.getName()).toEqual(expect.any(String));
-    console.log(Manager.getName())
-    expect(Manager.getEmail()).toEqual(expect.any(String));
-    console.log(Manager.getEmail())
-    expect(Manager.getId()).toEqual(expect.any(String));
-    console.log(Manager.getId())
-    expect(Manager.getRole()).toEqual(expect.any(String));
-    console.log(Manager.getRole())
+    expect(manager.getName()).toEqual(expect.any(String));
+    console.log(manager.getName())
+    expect(manager.getEmail()).toEqual(expect.any(String));
+    console.log(manager.getEmail())
+    expect(manager.getId()).toEqual(expect.any(String));
+    console.log(manager.getId())
+    expect(manager.getRole()).toEqual(expect.any(String));
+    console.log(manager.getRole())
+    expect(manager.getofficeNumber()).toEqual(expect.any(String));
+    console.log(manager.getofficeNumber())
 })
