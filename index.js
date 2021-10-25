@@ -1,6 +1,7 @@
 // import Engineer from './lib/Engineer';
 // import Manager from './lib/Manager';
 // import Intern from './lib/Intern';
+const fs = require('fs');
 var teamData = [];
 const inquirer = require("inquirer");
 
@@ -191,5 +192,60 @@ const promptStart = () => {
         })
 }
 
+function writeToFileHTML(data) {  
+    return new Promise((resolve, reject) => {
+    fs.writeFile('./dist./Index-test.html', data, err => {
+      if (err) {
+        reject(err);
+        return;
+      }
+  
+      resolve({
+        ok: true,
+        message: 'File created!'
+      });
+    });
+  });
+  };
+
+  function writeToFileCSS() {  
+    return new Promise((resolve, reject) => {
+        var data = `.blue-background{
+            background-color: blue;
+            color: white;
+        }
+         /* .external-card{
+         box-shadow: black ;
+        } */
+        .jumbotron{
+            background-color: red;
+            color: white;
+            text-align: center;
+        }`
+    fs.writeFile('./dist/style-test.css', data, err => {
+      if (err) {
+        reject(err);
+        return;
+      }
+  
+      resolve({
+        ok: true,
+        message: 'File created!'
+      });
+    });
+  });
+  };
+
+// function init(){
+//     promptStart()
+//     .then(teamData => {
+//         return generateHTML(teamData)
+//     })
+//     .then(generatedHTML => {
+//         console.log(generatedHTML)
+//         writeToFileHTML(generatedHTML);
+//         writeToFileCSS()
+//     })
+// }
 
 promptStart()
