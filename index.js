@@ -36,17 +36,17 @@ const promptManager = employeeData => {
             employeeData['officeNumber'] = managerData.officeNumber
             employeeData['confirmAddEmployee'] = managerData.confirmAddEmployee
             console.log(employeeData)
-            console.log(teamData)
-            teamData.push(employeeData);
-            console.log(teamData)
+            // console.log(teamData)
+            // teamData.push(employeeData);
+            // console.log(teamData)
         })
-        .then(managerData => {
-            if (employeeData.confirmAddEmployee) {
-                return promptStart(teamData);
-            } else {
-                return teamData;
-            }
-        })
+    // .then(managerData => {
+    //     if (employeeData.confirmAddEmployee) {
+    //         return promptStart(teamData);
+    //     } else {
+    //         return teamData;
+    //     }
+    // })
 }
 const promptEngineer = employeeData => {
     return inquirer.prompt([
@@ -76,17 +76,17 @@ const promptEngineer = employeeData => {
             employeeData['Github'] = engineerData.Github
             employeeData['confirmAddEmployee'] = engineerData.confirmAddEmployee
             console.log(employeeData)
-            console.log(teamData)
-            teamData.push(employeeData);
-            console.log(teamData)
+            // console.log(teamData)
+            // teamData.push(employeeData);
+            // console.log(teamData)
         })
-        .then(engineerData => {
-            if (employeeData.confirmAddEmployee) {
-                return promptStart(teamData);
-            } else {
-                return teamData;
-            }
-        })
+    // .then(engineerData => {
+    //     if (employeeData.confirmAddEmployee) {
+    //         return promptStart(teamData);
+    //     } else {
+    //         return teamData;
+    //     }
+    // })
 }
 const promptIntern = employeeData => {
     return inquirer.prompt([
@@ -116,17 +116,17 @@ const promptIntern = employeeData => {
             employeeData['school'] = internData.school
             employeeData['confirmAddEmployee'] = internData.confirmAddEmployee
             console.log(employeeData)
-            console.log(teamData)
-            teamData.push(employeeData);
-            console.log(teamData)
+            // console.log(teamData)
+            // teamData.push(employeeData);
+            // console.log(teamData)
         })
-        .then(internData => {
-            if (employeeData.confirmAddEmployee) {
-                return promptStart(teamData);
-            } else {
-                return teamData;
-            }
-        })
+    // .then(internData => {
+    //     if (employeeData.confirmAddEmployee) {
+    //         return promptStart(teamData);
+    //     } else {
+    //         return teamData;
+    //     }
+    // })
 }
 
 const promptStart = () => {
@@ -182,7 +182,7 @@ const promptStart = () => {
             //     console.log(employeeData)
             if (employeeData.role === 'Manager') {
                 promptManager(employeeData)
-                
+
             }
             if (employeeData.role === 'Engineer') {
                 promptEngineer(employeeData)
@@ -196,23 +196,23 @@ const promptStart = () => {
         })
 }
 
-function writeToFileHTML(data) {  
+function writeToFileHTML(data) {
     return new Promise((resolve, reject) => {
-    fs.writeFile('./dist./Index-test.html', data, err => {
-      if (err) {
-        reject(err);
-        return;
-      }
-  
-      resolve({
-        ok: true,
-        message: 'File created!'
-      });
-    });
-  });
-  };
+        fs.writeFile('./dist./Index-test.html', data, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
 
-  function writeToFileCSS() {  
+            resolve({
+                ok: true,
+                message: 'File created!'
+            });
+        });
+    });
+};
+
+function writeToFileCSS() {
     return new Promise((resolve, reject) => {
         var data = `.blue-background{
             background-color: blue;
@@ -226,41 +226,41 @@ function writeToFileHTML(data) {
             color: white;
             text-align: center;
         }`
-    fs.writeFile('./dist/style-test.css', data, err => {
-      if (err) {
-        reject(err);
-        return;
-      }
-  
-      resolve({
-        ok: true,
-        message: 'File created!'
-      });
-    });
-  });
-  };
+        fs.writeFile('./dist/style-test.css', data, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
 
-function init(){
+            resolve({
+                ok: true,
+                message: 'File created!'
+            });
+        });
+    });
+};
+
+function init() {
     promptStart()
-    .then(teamData => {
-        return generateHTML(teamData)
-    })
-    .then(generatedHTML => {
-        console.log(generatedHTML)
-        writeToFileHTML(generatedHTML);
-        writeToFileCSS()
-        console.log('Your team webpage is ready to view!')
-    })
+        .then(teamData => {
+            return generateHTML(teamData)
+        })
+        .then(generatedHTML => {
+            console.log(generatedHTML)
+            writeToFileHTML(generatedHTML);
+            writeToFileCSS()
+            console.log('Your team webpage is ready to view!')
+        })
 }
 
 // init()
 
 // above this line works but doesn't use lib of class objects created already
 
-function teamPage (){
+function teamPage() {
     this.teamData = [];
 }
-teamPage.prototype.initializeTeam = function(){
+teamPage.prototype.initializeTeam = function () {
     inquirer.prompt([
         {
             type: 'input',
@@ -311,38 +311,65 @@ teamPage.prototype.initializeTeam = function(){
         .then((employeeData) => {
             //     console.log(employeeData)
             if (employeeData.role === 'Manager') {
-                promptManager(employeeData) 
-                .then(({employeeData})=>{
-                    this.teamData.push(new Manager(employeeData.name,employeeData.id,employeeData.email,employeeData.officeNumber))
-                    // this.name = employeeData.name
-                    // this.id = employeeData.id
-                    // this.email = employeeData.email
-                    // this.officeNumber=employeeData.officeNumber
-            })
-        }
+                inquirer.prompt([
+                    {
+                        type: 'input',
+                        name: 'officeNumber',
+                        message: 'What is your office Number?',
+                        validate: officeInput => {
+                            if (officeInput) {
+                                return true;
+                            } else {
+                                console.log('You need to enter your office Number!');
+                                return false;
+                            }
+                        }
+                    },
+                    {
+                        type: 'confirm',
+                        name: 'confirmAddEmployee',
+                        message: 'Would you like to enter another employee?',
+                        default: false
+                    }
+                ])
+                console.log(employeeData)
+                        this.teamData.push(new Manager(employeeData.name, employeeData.id, employeeData.email, employeeData.officeNumber))
+                        // this.name = employeeData.name
+                        // this.id = employeeData.id
+                        // this.email = employeeData.email
+                        // this.officeNumber=employeeData.officeNumber
+                        console.log(this.teamData)
+                    // .then(employeeData => {
+                    //     if (employeeData.confirmAddEmployee) {
+                    //         return promptStart(teamData);
+                    //     } else {
+                    //         return teamData;
+                    //     }
+                    // })
+            }
             if (employeeData.role === 'Engineer') {
                 promptEngineer(employeeData)
-                .then(({employeeData})=>{
-                    this.teamData.push(new Engineer(employeeData.name,employeeData.id,employeeData.email,employeeData.Github))
-                    // this.name = employeeData.name
-                    // this.id = employeeData.id
-                    // this.email = employeeData.email
-                    // this.Github=employeeData.Github
-            })
-        }
+                    .then(({ employeeData }) => {
+                        this.teamData.push(new Engineer(employeeData.name, employeeData.id, employeeData.email, employeeData.Github))
+                        // this.name = employeeData.name
+                        // this.id = employeeData.id
+                        // this.email = employeeData.email
+                        // this.Github=employeeData.Github
+                    })
+            }
             if (employeeData.role === 'Intern') {
-                promptIntern(employeeData)                
-                .then(({employeeData})=>{
-                    this.teamData.push(new Intern(employeeData.name,employeeData.id,employeeData.email,employeeData.school))
-                    // this.name = employeeData.name
-                    // this.id = employeeData.id
-                    // this.email = employeeData.email
-                    // this.school=employeeData.school
-            })
+                promptIntern(employeeData)
+                    .then(({ employeeData }) => {
+                        this.teamData.push(new Intern(employeeData.name, employeeData.id, employeeData.email, employeeData.school))
+                        // this.name = employeeData.name
+                        // this.id = employeeData.id
+                        // this.email = employeeData.email
+                        // this.school=employeeData.school
+                    })
             }
             else {
                 return
             }
         })
 }
-new teamPage.initializeTeam();
+new teamPage().initializeTeam();
