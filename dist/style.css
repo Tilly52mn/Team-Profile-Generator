@@ -2,10 +2,9 @@
     background-color: blue;
     color: white;
 }
-.external-card{
-    margin: 10px;
-    padding: 0%;
-}
+ /* .external-card{
+ box-shadow: black ;
+} */
 .jumbotron{
     background-color: red;
     color: white;
