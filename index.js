@@ -1,9 +1,12 @@
-// import Engineer from './lib/Engineer';
-// import Manager from './lib/Manager';
-// import Intern from './lib/Intern';
+const Engineer = require('./lib/Engineer');
+const Manager = require('./lib/Manager');
+const Intern = require('./lib/Intern');
+const Employee = require('./lib/Employee');
+
 const fs = require('fs');
-var teamData = [];
+// var teamData = [];
 const inquirer = require("inquirer");
+const { time, timeStamp } = require('console');
 
 const promptManager = employeeData => {
     return inquirer.prompt([
@@ -179,6 +182,7 @@ const promptStart = () => {
             //     console.log(employeeData)
             if (employeeData.role === 'Manager') {
                 promptManager(employeeData)
+                
             }
             if (employeeData.role === 'Engineer') {
                 promptEngineer(employeeData)
@@ -236,16 +240,109 @@ function writeToFileHTML(data) {
   });
   };
 
-// function init(){
-//     promptStart()
-//     .then(teamData => {
-//         return generateHTML(teamData)
-//     })
-//     .then(generatedHTML => {
-//         console.log(generatedHTML)
-//         writeToFileHTML(generatedHTML);
-//         writeToFileCSS()
-//     })
-// }
+function init(){
+    promptStart()
+    .then(teamData => {
+        return generateHTML(teamData)
+    })
+    .then(generatedHTML => {
+        console.log(generatedHTML)
+        writeToFileHTML(generatedHTML);
+        writeToFileCSS()
+        console.log('Your team webpage is ready to view!')
+    })
+}
 
-promptStart()
+// init()
+
+// above this line works but doesn't use lib of class objects created already
+
+function teamPage (){
+    this.teamData = [];
+}
+teamPage.prototype.initializeTeam = function(){
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is your name?',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log('You need to enter your name!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'Provide your Id ',
+            validate: descriptionInput => {
+                if (descriptionInput) {
+                    return true;
+                } else {
+                    console.log('You need to enter your Id!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is your email?',
+            validate: installInput => {
+                if (installInput) {
+                    return true;
+                } else {
+                    console.log('You need to enter your email!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'list',
+            name: 'role',
+            message: 'What is your role?',
+            choices: ['Manager', 'Engineer', 'Intern']
+        },
+    ])
+        .then((employeeData) => {
+            //     console.log(employeeData)
+            if (employeeData.role === 'Manager') {
+                promptManager(employeeData) 
+                .then(({employeeData})=>{
+                    this.teamData.push(new Manager(employeeData.name,employeeData.id,employeeData.email,employeeData.officeNumber))
+                    // this.name = employeeData.name
+                    // this.id = employeeData.id
+                    // this.email = employeeData.email
+                    // this.officeNumber=employeeData.officeNumber
+            })
+        }
+            if (employeeData.role === 'Engineer') {
+                promptEngineer(employeeData)
+                .then(({employeeData})=>{
+                    this.teamData.push(new Engineer(employeeData.name,employeeData.id,employeeData.email,employeeData.Github))
+                    // this.name = employeeData.name
+                    // this.id = employeeData.id
+                    // this.email = employeeData.email
+                    // this.Github=employeeData.Github
+            })
+        }
+            if (employeeData.role === 'Intern') {
+                promptIntern(employeeData)                
+                .then(({employeeData})=>{
+                    this.teamData.push(new Intern(employeeData.name,employeeData.id,employeeData.email,employeeData.school))
+                    // this.name = employeeData.name
+                    // this.id = employeeData.id
+                    // this.email = employeeData.email
+                    // this.school=employeeData.school
+            })
+            }
+            else {
+                return
+            }
+        })
+}
+new teamPage.initializeTeam();
