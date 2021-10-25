@@ -256,120 +256,259 @@ function init() {
 // init()
 
 // above this line works but doesn't use lib of class objects created already
+const startQuestions =[
+    {
+        type: 'input',
+        name: 'name',
+        message: 'What is your name?',
+        validate: nameInput => {
+            if (nameInput) {
+                return true;
+            } else {
+                console.log('You need to enter your name!');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'id',
+        message: 'Provide your Id ',
+        validate: descriptionInput => {
+            if (descriptionInput) {
+                return true;
+            } else {
+                console.log('You need to enter your Id!');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'What is your email?',
+        validate: installInput => {
+            if (installInput) {
+                return true;
+            } else {
+                console.log('You need to enter your email!');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'list',
+        name: 'role',
+        message: 'What is your role?',
+        choices: ['Manager', 'Engineer', 'Intern']
+    },
+]
+function questionfunc (){
+    inquirer.prompt(startQuestions)
+    .then((employeeData) => {
+        //     console.log(employeeData)
+        if (employeeData.role === 'Manager') {
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'officeNumber',
+                    message: 'What is your office Number?',
+                    validate: officeInput => {
+                        if (officeInput) {
+                            return true;
+                        } else {
+                            console.log('You need to enter your office Number!');
+                            return false;
+                        }
+                    }
+                },
+                {
+                    type: 'confirm',
+                    name: 'confirmAddEmployee',
+                    message: 'Would you like to enter another employee?',
+                    default: false
+                }
+            ])
+            .then(managerData =>{
+                this.teamData.push(new Manager(employeeData.name, employeeData.id, employeeData.email, managerData.officeNumber))
+                console.log(managerData)
+                console.log(this.teamData)
+            })
+                .then(employeeData => {
+                    if (employeeData.confirmAddEmployee) {
+                        return questionfunc(teamData);
+                    } else {
+                        return teamData;
+                    }
+                })
+        }
+        if (employeeData.role === 'Engineer') {
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'Github',
+                    message: 'What is your Github profile name?',
+                    validate: GithubInput => {
+                        if (GithubInput) {
+                            return true;
+                        } else {
+                            console.log('You need to enter your Github profile name!');
+                            return false;
+                        }
+                    }
+                },
+                {
+                    type: 'confirm',
+                    name: 'confirmAddEmployee',
+                    message: 'Would you like to enter another employee?',
+                    default: false
+                }
+            ])
+                    .then(engineerData =>{
+                        this.teamData.push(new Engineer(employeeData.name, employeeData.id, employeeData.email, engineerData.Github))
+                        console.log(engineerData)
+                        console.log(this.teamData)
+                    })
 
+        }
+        if (employeeData.role === 'Intern') {
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'school',
+                    message: 'What school are you attending?',
+                    validate: schoolInput => {
+                        if (schoolInput) {
+                            return true;
+                        } else {
+                            console.log('You need to enter your school!');
+                            return false;
+                        }
+                    }
+                },
+                {
+                    type: 'confirm',
+                    name: 'confirmAddEmployee',
+                    message: 'Would you like to enter another employee?',
+                    default: false
+                }
+            ])
+            .then(internData =>{
+                this.teamData.push(new Intern(employeeData.name, employeeData.id, employeeData.email, internData.school))
+                console.log(internData)
+                console.log(this.teamData)
+            })
+                
+        }
+        else {
+            return
+        }
+    })
+}
 function teamPage() {
     this.teamData = [];
 }
 teamPage.prototype.initializeTeam = function () {
-    inquirer.prompt([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'What is your name?',
-            validate: nameInput => {
-                if (nameInput) {
-                    return true;
-                } else {
-                    console.log('You need to enter your name!');
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'id',
-            message: 'Provide your Id ',
-            validate: descriptionInput => {
-                if (descriptionInput) {
-                    return true;
-                } else {
-                    console.log('You need to enter your Id!');
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'email',
-            message: 'What is your email?',
-            validate: installInput => {
-                if (installInput) {
-                    return true;
-                } else {
-                    console.log('You need to enter your email!');
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'list',
-            name: 'role',
-            message: 'What is your role?',
-            choices: ['Manager', 'Engineer', 'Intern']
-        },
-    ])
-        .then((employeeData) => {
-            //     console.log(employeeData)
-            if (employeeData.role === 'Manager') {
-                inquirer.prompt([
-                    {
-                        type: 'input',
-                        name: 'officeNumber',
-                        message: 'What is your office Number?',
-                        validate: officeInput => {
-                            if (officeInput) {
-                                return true;
-                            } else {
-                                console.log('You need to enter your office Number!');
-                                return false;
-                            }
-                        }
-                    },
-                    {
-                        type: 'confirm',
-                        name: 'confirmAddEmployee',
-                        message: 'Would you like to enter another employee?',
-                        default: false
-                    }
-                ])
-                console.log(employeeData)
-                        this.teamData.push(new Manager(employeeData.name, employeeData.id, employeeData.email, employeeData.officeNumber))
-                        // this.name = employeeData.name
-                        // this.id = employeeData.id
-                        // this.email = employeeData.email
-                        // this.officeNumber=employeeData.officeNumber
-                        console.log(this.teamData)
-                    // .then(employeeData => {
-                    //     if (employeeData.confirmAddEmployee) {
-                    //         return promptStart(teamData);
-                    //     } else {
-                    //         return teamData;
-                    //     }
-                    // })
-            }
-            if (employeeData.role === 'Engineer') {
-                promptEngineer(employeeData)
-                    .then(({ employeeData }) => {
-                        this.teamData.push(new Engineer(employeeData.name, employeeData.id, employeeData.email, employeeData.Github))
-                        // this.name = employeeData.name
-                        // this.id = employeeData.id
-                        // this.email = employeeData.email
-                        // this.Github=employeeData.Github
-                    })
-            }
-            if (employeeData.role === 'Intern') {
-                promptIntern(employeeData)
-                    .then(({ employeeData }) => {
-                        this.teamData.push(new Intern(employeeData.name, employeeData.id, employeeData.email, employeeData.school))
-                        // this.name = employeeData.name
-                        // this.id = employeeData.id
-                        // this.email = employeeData.email
-                        // this.school=employeeData.school
-                    })
-            }
-            else {
-                return
-            }
-        })
+    questionfunc(this.teamData)
+    // inquirer.prompt(startQuestions)
+    //     .then((employeeData) => {
+    //         //     console.log(employeeData)
+    //         if (employeeData.role === 'Manager') {
+    //             inquirer.prompt([
+    //                 {
+    //                     type: 'input',
+    //                     name: 'officeNumber',
+    //                     message: 'What is your office Number?',
+    //                     validate: officeInput => {
+    //                         if (officeInput) {
+    //                             return true;
+    //                         } else {
+    //                             console.log('You need to enter your office Number!');
+    //                             return false;
+    //                         }
+    //                     }
+    //                 },
+    //                 {
+    //                     type: 'confirm',
+    //                     name: 'confirmAddEmployee',
+    //                     message: 'Would you like to enter another employee?',
+    //                     default: false
+    //                 }
+    //             ])
+    //             .then(managerData =>{
+    //                 this.teamData.push(new Manager(employeeData.name, employeeData.id, employeeData.email, managerData.officeNumber))
+    //                 console.log(managerData)
+    //                 console.log(this.teamData)
+    //             })
+    //                 .then(employeeData => {
+    //                     if (employeeData.confirmAddEmployee) {
+    //                         return promptStart(teamData);
+    //                     } else {
+    //                         return teamData;
+    //                     }
+    //                 })
+    //         }
+    //         if (employeeData.role === 'Engineer') {
+    //             inquirer.prompt([
+    //                 {
+    //                     type: 'input',
+    //                     name: 'Github',
+    //                     message: 'What is your Github profile name?',
+    //                     validate: GithubInput => {
+    //                         if (GithubInput) {
+    //                             return true;
+    //                         } else {
+    //                             console.log('You need to enter your Github profile name!');
+    //                             return false;
+    //                         }
+    //                     }
+    //                 },
+    //                 {
+    //                     type: 'confirm',
+    //                     name: 'confirmAddEmployee',
+    //                     message: 'Would you like to enter another employee?',
+    //                     default: false
+    //                 }
+    //             ])
+    //                     .then(engineerData =>{
+    //                         this.teamData.push(new Engineer(employeeData.name, employeeData.id, employeeData.email, engineerData.Github))
+    //                         console.log(engineerData)
+    //                         console.log(this.teamData)
+    //                     })
+
+    //         }
+    //         if (employeeData.role === 'Intern') {
+    //             inquirer.prompt([
+    //                 {
+    //                     type: 'input',
+    //                     name: 'school',
+    //                     message: 'What school are you attending?',
+    //                     validate: schoolInput => {
+    //                         if (schoolInput) {
+    //                             return true;
+    //                         } else {
+    //                             console.log('You need to enter your school!');
+    //                             return false;
+    //                         }
+    //                     }
+    //                 },
+    //                 {
+    //                     type: 'confirm',
+    //                     name: 'confirmAddEmployee',
+    //                     message: 'Would you like to enter another employee?',
+    //                     default: false
+    //                 }
+    //             ])
+    //             .then(internData =>{
+    //                 this.teamData.push(new Intern(employeeData.name, employeeData.id, employeeData.email, internData.school))
+    //                 console.log(internData)
+    //                 console.log(this.teamData)
+    //             })
+                    
+    //         }
+    //         else {
+    //             return
+    //         }
+    //     })
 }
 new teamPage().initializeTeam();
