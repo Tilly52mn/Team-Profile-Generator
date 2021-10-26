@@ -1,0 +1,12 @@
+.blue-background{
+            background-color: blue;
+            color: white;
+        }
+         /* .external-card{
+         box-shadow: black ;
+        } */
+        .jumbotron{
+            background-color: red;
+            color: white;
+            text-align: center;
+        }

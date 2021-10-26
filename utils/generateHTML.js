@@ -1,4 +1,5 @@
-module.exports = teamData => {
+module.exports = generateHTML
+function generateHTML(teamData) {
     return `
     <!DOCTYPE html>
 <html lang="en">
