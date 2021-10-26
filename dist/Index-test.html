@@ -1,6 +1,4 @@
-module.exports = generateHTML
-async function generateHTML(teamData) {
-    return `
+
     <!DOCTYPE html>
 <html lang="en">
 
@@ -21,87 +19,73 @@ async function generateHTML(teamData) {
         </div>
     </header>
     <div class="container row mx-auto">
-${generateTeamMembers(teamData)}
+
+            <div class=" col-3 mx-auto">
+        <div class="card external-card mr-1 mb-3 shadow">
+            <div class="card-header blue-background">
+                <h5 class="card-title">asdf</h5>
+                <p class="card-text">Manager</p>
+            </div>
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="card-text">ID: tghjn</p>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Email: <a class="link"
+                                href="mailto:rtdjnt">rtdjnt</a></p>
+                        <p class="card-text">Office number: aehnrtt</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+                    
+    <div class=" col-3 mx-auto">
+        <div class="card external-card mr-1 mb-3 shadow">
+            <div class="card-header blue-background">
+                <h5 class="card-title">asgvytjmn</h5>
+                <p class="card-text">Engineer</p>
+            </div>
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="card-text">ID: SDFG</p>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Email: <a class="link"
+                            href="mailto:UYL">UYL</a></p>
+                        <p class="card-text">Github:<a class="link" href="github.com/AGTJ">AGTJ</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+            <div class=" col-3 mx-auto">
+        <div class="card external-card mr-1 mb-3 shadow">
+            <div class="card-header blue-background">
+                <h5 class="card-title">AETZRJHNKM</h5>
+                <p class="card-text">Intern</p>
+            </div>
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="card-text">ID: ASDF</p>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Email: <a class="link"
+                                href="mailto:RMJT">RMJT</a></p>
+                        <p class="card-text">School: RYFMF</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
     </div>
 </body>
 
 </html>
-`
-}
-const generateTeamMembers = teamArr => {
-    return `
-    ${teamArr.filter(team => team.role === "Manager").map(({ name, id, email, role, officeNumber, confirmAddEmployee }) => {
-        return `        <div class=" col-3 mx-auto">
-        <div class="card external-card mr-1 mb-3 shadow">
-            <div class="card-header blue-background">
-                <h5 class="card-title">${name}</h5>
-                <p class="card-text">${role}</p>
-            </div>
-            <div class="card-body">
-                <div class="card">
-                    <div class="card-header">
-                        <p class="card-text">ID: ${id}</p>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Email: <a class="link"
-                                href="mailto:${email}">${email}</a></p>
-                        <p class="card-text">Office number: ${officeNumber}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `
-    })
-            .join('')}
-    ${teamArr.filter(team => team.role === "Engineer").map(({ name, id, email, role, Github, confirmAddEmployee }) => {
-                return `                
-    <div class=" col-3 mx-auto">
-        <div class="card external-card mr-1 mb-3 shadow">
-            <div class="card-header blue-background">
-                <h5 class="card-title">${name}</h5>
-                <p class="card-text">${role}</p>
-            </div>
-            <div class="card-body">
-                <div class="card">
-                    <div class="card-header">
-                        <p class="card-text">ID: ${id}</p>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Email: <a class="link"
-                            href="mailto:${email}">${email}</a></p>
-                        <p class="card-text">Github:<a class="link" href="github.com/${Github}">${Github}</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `
-            })
-            .join('')}
-    ${teamArr.filter(team => team.role === "Intern").map(({ name, id, email, role, school, confirmAddEmployee }) => {
-                return `        <div class=" col-3 mx-auto">
-        <div class="card external-card mr-1 mb-3 shadow">
-            <div class="card-header blue-background">
-                <h5 class="card-title">${name}</h5>
-                <p class="card-text">${role}</p>
-            </div>
-            <div class="card-body">
-                <div class="card">
-                    <div class="card-header">
-                        <p class="card-text">ID: ${id}</p>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Email: <a class="link"
-                                href="mailto:${email}">${email}</a></p>
-                        <p class="card-text">School: ${school}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `
-            })
-            .join('')}
-`
-}

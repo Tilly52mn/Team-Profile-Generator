@@ -60,7 +60,7 @@ const startQuestions = [
 
 function writeToFileHTML(data) {
     return new Promise((resolve, reject) => {
-        fs.writeFile('./dist./Index-test.html', data, err => {
+        fs.writeFile('./dist/Index-test.html', data, err => {
             if (err) {
                 reject(err);
                 return;
@@ -120,8 +120,7 @@ var repeatQuestions = function () {
             } else {
                 console.log(teamData)
                 writeToFileCSS()
-                generateHTML(teamData)
-                .then(HTML =>{
+                generateHTML(teamData).then(HTML =>{
                     console.log(HTML)
                     writeToFileHTML(HTML)
                 })
