@@ -60,7 +60,7 @@ const startQuestions = [
 
 function writeToFileHTML(data) {
     return new Promise((resolve, reject) => {
-        fs.writeFile('./dist/Index-test.html', data, err => {
+        fs.writeFile('./dist/Index.html', data, err => {
             if (err) {
                 reject(err);
                 return;
@@ -88,7 +88,7 @@ function writeToFileCSS() {
             color: white;
             text-align: center;
         }`
-        fs.writeFile('./dist/style-test.css', data, err => {
+        fs.writeFile('./dist/style.css', data, err => {
             if (err) {
                 reject(err);
                 return;
