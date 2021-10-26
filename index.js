@@ -4,9 +4,11 @@ const Intern = require('./lib/Intern');
 const Employee = require('./lib/Employee');
 
 const fs = require('fs');
-// var teamData = [];
+const  teamData = [];
 const inquirer = require("inquirer");
 const { time, timeStamp } = require('console');
+
+
 
 const promptManager = employeeData => {
     return inquirer.prompt([
@@ -406,12 +408,13 @@ const startQuestions =[
 //     })
 // }
 function teamPage() {
-    this.teamData = [];
 }
-teamPage.prototype.initializeTeam = function () {
-    if (this.teamData =null){
-        this.teamData = []
-    }
+
+var managerQuestions =function(data){
+
+}
+
+var initializeEmployee = function () {
     var questionfunc =function (){
         inquirer.prompt(startQuestions)
         .then((employeeData) => {
@@ -440,16 +443,18 @@ teamPage.prototype.initializeTeam = function () {
                 ])
                 .then(managerData =>{
                     console.log(managerData)
-                    console.log(this.teamData)
-                    this.teamData.push(new Manager(employeeData.name, employeeData.id, employeeData.email, managerData.officeNumber))
+                    console.log(teamData)
+                    teamData.push(new Manager(employeeData.name, employeeData.id, employeeData.email, managerData.officeNumber))
                     console.log(managerData)
-                    console.log(this.teamData)
+                    console.log(teamData)
                 })
-                    .then(employeeData => {
-                        if (employeeData.confirmAddEmployee) {
-                            return questionfunc();
+                    .then(teamData => {
+                        console.log(teamData)
+                        if (managerData.confirmAddEmployee) {
+                            return initializeEmployee()();
                         } else {
-                            return teamData;
+                            console.log(teamData)
+                            return 
                         }
                     })
             }
@@ -618,4 +623,4 @@ teamPage.prototype.initializeTeam = function () {
     //         }
     //     })
 }
-new teamPage().initializeTeam();
+initializeEmployee()
